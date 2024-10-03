@@ -4,12 +4,19 @@ return {
 		"williamboman/mason.nvim",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, {
-				"luacheck",
-				"shellcheck",
-				"shfmt",
-				"tailwindcss-language-server",
-				"typescript-language-server",
-				"css-lsp",
+			 "luacheck",                     -- A static analysis tool for Lua.
+            "shellcheck",                   -- A tool for analyzing shell scripts.
+            "shfmt",                        -- A shell script formatter.
+            "tailwindcss-language-server",  -- Language server for Tailwind CSS.
+            "typescript-language-server",    -- Language server for TypeScript.
+            "css-lsp",                      -- Language server for CSS.
+            "eslint-lsp",                   -- Language server for ESLint (JavaScript and TypeScript linting).
+            "json-lsp",                     -- Language server for JSON.
+            "prettier",                     -- Code formatter for various languages.
+            "graphql-language-service-cli",  -- GraphQL language server.
+            "python-lsp-server",            -- Language server for Python.
+            "csharp-ls",                    -- Language server for C# (if you work with .NET).
+            "clangd",
 			})
 		end,
 	},
