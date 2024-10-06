@@ -93,6 +93,47 @@ local plugins = {
     end,
   },
 
+{
+    "NvChad/nvim-colorizer.lua",
+    config = function()
+      require('colorizer').setup {
+        filetypes = { "css", "html", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+        user_default_options = {
+          tailwind = true,
+          mode = "background",
+        },
+      }
+    end
+  },
+
+
+  {
+      "okuuva/auto-save.nvim",
+      event = { "FocusLost", "InsertLeave", "TextChanged" }, -- triggers auto-save based on events
+      config = function()
+         require("auto-save").setup({
+            enabled = true, -- enable auto-save
+            execution_message = {
+               enabled = true,
+               message = function() -- custom save message
+                  return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"))
+               end,
+               dim = 0.18, -- dim the message display color
+               cleaning_interval = 1250, -- clean MsgArea after displaying the message
+            },
+            trigger_events = {
+               immediate_save = { "FocusLost" }, -- save immediately on focus lost
+               defer_save = { "InsertLeave", "TextChanged" }, -- deferred save on text change or insert leave
+               cancel_defered_save = { "InsertEnter" }, -- cancel deferred save when entering insert mode
+            },
+            debounce_delay = 1000, -- auto-save after 1 second of inactivity
+            condition = nil, -- no specific condition, save all buffers
+            write_all_buffers = false, -- save only the current buffer
+            noautocmd = false, -- execute autocmds when saving
+            lockmarks = false, -- don't lock marks when saving
+         })
+      end
+   }
 --{
 --    "nvim-treesitter/nvim-treesitter",
 --    opts = function()
