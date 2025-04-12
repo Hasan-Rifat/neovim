@@ -12,8 +12,11 @@ return {
 				"tailwindcss-language-server",
 				"typescript-language-server",
 				"css-lsp",
+
+				-- 🔽🔽🔽 NEW: Add these tools for C support (clangd and clang-format) -- start
 				"clangd",
 				"clang-format",
+				-- 🔼🔼🔼 NEW: Add these tools for C support (clangd and clang-format) -- end
 			})
 		end,
 	},
@@ -70,7 +73,6 @@ return {
 					},
 				},
 				lua_ls = {
-					-- enabled = false,
 					single_file_support = true,
 					settings = {
 						Lua = {
@@ -102,7 +104,6 @@ return {
 							},
 							diagnostics = {
 								disable = { "incomplete-signature-doc", "trailing-space" },
-								-- enable = false,
 								groupSeverity = {
 									strong = "Warning",
 									strict = "Warning",
@@ -134,10 +135,16 @@ return {
 						},
 					},
 				},
+
+				-- 🔽🔽🔽 NEW: Add clangd to enable C/C++ support -- start
+				clangd = {},
+				-- 🔼🔼🔼 NEW: Add clangd to enable C/C++ support -- end
 			},
 			setup = {},
 		},
 	},
+
+	-- optional keymaps
 	{
 		"neovim/nvim-lspconfig",
 		opts = function()
@@ -146,7 +153,6 @@ return {
 				{
 					"gd",
 					function()
-						-- DO NOT RESUSE WINDOW
 						require("telescope.builtin").lsp_definitions({ reuse_win = false })
 					end,
 					desc = "Goto Definition",
